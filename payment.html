@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment Method</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f9fc;
+      margin: 0;
+      padding: 0;
+    }
+
+    .app-bar {
+      background-color: #166194;
+      color: white;
+      padding: 16px;
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .container {
+      padding: 16px;
+    }
+
+    .card {
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      padding: 16px;
+      margin-bottom: 20px;
+    }
+
+    .card h2 {
+      margin-top: 0;
+      font-size: 18px;
+    }
+
+    .payment-option {
+      display: flex;
+      align-items: center;
+      margin-bottom: 12px;
+      cursor: pointer;
+      flex-wrap: wrap;
+    }
+
+    .payment-option input[type="radio"] {
+      margin-right: 10px;
+    }
+
+    .bank-details {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .bank-card {
+      flex: 1;
+      background-color: #f3f3f3;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 12px;
+    }
+
+    .bank-card p {
+      margin: 4px 0;
+    }
+
+    .btn {
+      display: inline-block;
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      background-color: #007DC3;
+      cursor: pointer;
+    }
+
+    .btn.green {
+      background-color: green;
+    }
+
+    .btn:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+
+    .loading-spinner {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 3px solid #fff;
+      border-top-color: transparent;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Media Queries for Responsiveness */
+    @media (max-width: 768px) {
+      .app-bar {
+        font-size: 18px;
+        padding: 12px;
+      }
+
+      .container {
+        padding: 8px;
+      }
+
+      .card {
+        padding: 12px;
+      }
+
+      .payment-option {
+        flex-direction: column;
+      }
+
+      .bank-details {
+        flex-direction: column;
+      }
+
+      .bank-card {
+        flex: none;
+        width: 100%;
+        margin-bottom: 10px;
+      }
+
+      .btn {
+        font-size: 14px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .app-bar {
+        font-size: 16px;
+        padding: 10px;
+      }
+
+      .card h2 {
+        font-size: 16px;
+      }
+
+      .btn {
+        font-size: 14px;
+        padding: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-bar">Payment Method</div>
+
+  <div class="container">
+
+    <!-- Payment Method -->
+    <div class="card">
+      <h2>Select Payment Method</h2>
+
+      <label class="payment-option">
+        <input type="radio" name="payment" value="1" checked onchange="toggleBankDetails(true)">
+        <span>
+          <strong>Pay Before Delivery</strong><br>
+          Transfer ₦2,000 to our account
+        </span>
+      </label>
+
+      <div id="bankDetails">
+        <div class="bank-details">
+          <div class="bank-card">
+            <p><strong>Bank Details:</strong></p>
+            <p>Account: 1229274966</p>
+            <p>Bank: Zenith</p>
+          </div>
+          <div class="bank-card">
+            <p><strong>Bank Details:</strong></p>
+            <p>Account: 1028113596</p>
+            <p>Bank: UBA</p>
+          </div>
+        </div>
+        <button class="btn" onclick="openWhatsApp()">Send Proof via WhatsApp</button>
+      </div>
+
+      <hr style="margin: 20px 0;">
+
+      <label class="payment-option">
+        <input type="radio" name="payment" value="2" onchange="toggleBankDetails(false)">
+        <span>
+          <strong>Pay on Delivery</strong><br>
+          Pay ₦2,000 when package arrives
+        </span>
+      </label>
+    </div>
+
+    <!-- Support Chat -->
+    <div class="card">
+      <h2>Need Help?</h2>
+      <button class="btn green" onclick="openWhatsApp()">Chat with Us</button>
+    </div>
+
+    <!-- Proceed Button -->
+    <div class="card">
+      <button class="btn" id="proceedBtn" onclick="handlePayment()">Proceed to Confirmation</button>
+    </div>
+
+  </div>
+
+<script>
+  function toggleBankDetails(show) {
+    document.getElementById("bankDetails").style.display = show ? "block" : "none";
+  }
+
+  function openWhatsApp() {
+    const phone = '+2349114167785';
+    const text = 'Hello, I need assistance with my payment.';
+    const url = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
+    window.open(url, '_blank');
+  }
+
+  function handlePayment() {
+    const btn = document.getElementById('proceedBtn');
+    btn.innerHTML = '<div class="loading-spinner"></div>';
+    btn.disabled = true;
+
+    setTimeout(() => {
+      window.location.href = "confirmation.html"; // direct redirection without alert
+    }, 2000); // simulate loading
+  }
+
+  window.onload = () => {
+    toggleBankDetails(true);
+  };
+</script>
+
+</body>
+</html>

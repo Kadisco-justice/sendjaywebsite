@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Send Jay Logistics</title>
+  <style>
+   /* Existing styles remain the same */
+:root {
+  --primary: #166194;
+  --secondary: #007DC3;
+  --white: #fff;
+  --dark: #1c1c1c;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  color: var(--dark);
+  background-color: #f5f7fa;
+  line-height: 1.6;
+}
+
+header {
+  background-color: var(--primary);
+  color: var(--white);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  flex-wrap: wrap;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo-container img {
+  height: 50px;
+  width: auto;
+  object-fit: contain;
+  margin-right: 0.75rem;
+}
+
+.logo-container span {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+}
+
+nav a {
+  color: var(--white);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+nav a.btn {
+  background-color: var(--secondary);
+  padding: 0.6rem 1rem;
+  border-radius: 4px;
+}
+
+nav a:hover {
+  color: #d9eaf6;
+}
+
+.hero {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url('https://images.unsplash.com/photo-1618221209793-08a94c7c4519') no-repeat center center/cover;
+  color: var(--white);
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: white;
+}
+
+.hero img.hero-image {
+  max-width: 100%;
+  height: auto;
+  margin-top: 1.5rem;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.btn {
+  background-color: var(--secondary);
+  color: var(--white);
+  padding: 0.7rem 1.3rem;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #005a96;
+}
+
+.contact-button {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: #007DC3;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.contact-button:hover {
+  background-color: #005f94;
+  transform: translateY(-2px);
+}
+
+.services,
+.about,
+.cta {
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+.service-cards {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.card {
+  background: var(--white);
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  width: 300px;
+  transition: transform 0.2s ease;
+  text-align: center;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card i {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: var(--primary);
+}
+
+.cta h2 {
+  color: var(--primary);
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.cta p {
+  color: var(--dark);
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+footer {
+  background-color: var(--primary);
+  color: var(--white);
+  text-align: center;
+  padding: 1.5rem 1rem;
+  margin-top: 3rem;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 1.8rem;
+  }
+
+  .service-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 400px;
+  }
+
+  nav {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  nav a {
+    font-size: 1.2rem;
+  }
+
+  .contact-button {
+    font-size: 16px;
+    padding: 10px 20px;
+  }
+
+  .cta h2 {
+    font-size: 1.5rem;
+  }
+
+  .cta p {
+    font-size: 1rem;
+  }
+
+  .hero img.hero-image {
+    width: 100%;
+  }
+
+  .page-buttons button {
+    width: 100%;
+  }
+
+  footer {
+    padding: 2rem 1rem;
+  }
+}
+
+  </style>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="logo-container">
+      <a href="https://ibb.co/Q3XFh9Yf"><img src="https://i.ibb.co/39kyV1S7/Whats-App-Image-2025-04-13-at-19-57-49-2fb3a53e.jpg" alt="Send Jay Logistics Logo" border="0" /></a>
+      <span>Send Jay Logistics</span>
+    </div>
+    <nav>
+      <a href="#services">Services</a>
+      <a href="learn.html">About Us</a>
+      <a href="booking.html" class="btn">Book a Service</a>
+      <a href="login.html" class="btn">Login/Signup</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Delivering With Excellence, Globally</h1>
+<a href="https://ibb.co/0pMHZhr4"><img src="https://i.ibb.co/bjBcLzXw/Whats-App-Image-2025-04-15-at-10-30-54-300eef25.jpg" alt="Whats-App-Image-2025-04-15-at-10-30-54-300eef25" border="0"></a>
+    <p>Welcome to Send Jay Logistics - your trusted partner for reliable delivery, swift dispatch, and efficient logistics services tailored for global impact.</p>
+    <a href="booking.html" class="btn">Get Started</a>
+  </section>
+
+  <section id="services" class="services">
+    <h2>Our Services</h2>
+    <div class="service-cards">
+      <div class="card">
+        <i class="fas fa-box"></i>
+        <h3>Parcel Delivery</h3>
+        <p>Efficient and secure delivery of parcels across cities and states.</p>
+      </div>
+      <div class="card">
+        <i class="fas fa-building"></i>
+        <h3>Corporate Logistics</h3>
+       
+        <p>Reliable logistics support tailored for businesses and professionals.</p>
+      </div>
+      <div class="card">
+        <i class="fas fa-map-marker-alt"></i>
+        <h3>Real-Time Tracking</h3>
+        <p>Track your packages in real time using our digital platform.</p>
+      </div>
+      <div class="card">
+        <i class="fas fa-home"></i>
+        <h3>Home Delivery</h3>
+        <p>From your door to any destination — safe, fast, and seamless delivery.</p>
+      </div>
+      <div class="card">
+        <i class="fas fa-check-circle"></i>
+        <h3>Errands</h3>
+        <p>Let us handle your tasks — from pickups to drop-offs with convenience.</p>
+      </div>
+      <div class="card">
+        <i class="fas fa-motorcycle"></i>
+        <h3>Dispatch</h3>
+        <p>Swift motorcycle dispatch for documents, items, and urgent deliveries.</p>
+      </div>
+    </div>
+
+  </section>
+  <section class="cta">
+  <h2>Every delivery is a promise fulfilled, a smile delivered, and a moment made special.</h2>
+ <a href="https://ibb.co/GvFTBryR"><img src="https://i.ibb.co/fYQvBTfH/Whats-App-Image-2025-04-21-at-08-25-18-d87361b7.jpg" alt="Whats-App-Image-2025-04-21-at-08-25-18-d87361b7" border="0"></a>
+</section>
+ <section id="book" class="cta">
+    <h2>Ready to send a package?</h2>
+    <a href="https://ibb.co/bgmf7fdR"><img src="https://i.ibb.co/gM9n6ngF/Whats-App-Image-2025-04-21-at-07-22-02-d0df411b.jpg" alt="Whats-App-Image-2025-04-21-at-07-22-02-d0df411b" border="0"></a>
+    <p>Experience secure, fast and professional delivery today.</p>
+    <a href="booking.html" class="btn">Book a Service</a>
+
+  </section>
+
+  
+
+
+<div class="page-buttons">
+  <button onclick="toggleContact()" class="contact-button">
+    <i class="fas fa-phone"></i> Contact Us
+  </button>
+
+  <div id="contact-info" style="display:none; margin-top: 15px;">
+    <p><i class="fas fa-envelope"></i><a href="mailto:support@sendjaylogistics.com">support@sendjaylogistics.com</a></p>
+    <p><i class="fas fa-phone-alt"></i> <a href="tel:+2349114167785">+234 911 416 7785</a></p>
+    <p><i class="fab fa-whatsapp"></i> <a href="https://wa.me/2349114167785" target="_blank">Chat on WhatsApp</a></p>
+    <p><i class="fab fa-facebook-f"></i><a href="https://www.facebook.com/profile.php?id=61574087341163" target="_blank">Visit our Facebook</a></p>
+    <p><i class="fab fa-instagram"></i><a href="https://instagram.com/sendjaylogistics" target="_blank">@sendjaylogistics</a></p>
+  </div>
+</div>
+
+
+
+
+<script>
+    function toggleContact() {
+      var contactDiv = document.getElementById("contact-info");
+      // Toggle between showing and hiding contact info
+      contactDiv.style.display = contactDiv.style.display === "none" ? "block" : "none";
+    }
+</script>
+ </section>
+
+  <footer id="contact">
+    <p>&copy; 2025 Send Jay Logistics. All rights reserved.</p>
+    
+  </footer>
+</body>
+</html>

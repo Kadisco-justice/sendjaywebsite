@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Book a Service - Send Jay Logistics</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f5f7fa;
+      margin: 0;
+      padding: 1rem;
+    }
+
+    h2 {
+      text-align: center;
+      color: #166194;
+      font-size: 1.8rem;
+    }
+
+    form {
+      max-width: 600px;
+      margin: 2rem auto;
+      background-color: white;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    h3 {
+      color: #007DC3;
+      margin-top: 1.5rem;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.4rem;
+      font-weight: 600;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 0.6rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 1rem;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    button {
+      width: 100%;
+      background-color: #007DC3;
+      color: white;
+      padding: 0.8rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background-color: #005a96;
+    }
+
+    @media (max-width: 768px) {
+      form {
+        padding: 1.5rem;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+      }
+
+      input, select, button {
+        font-size: 1rem;
+        padding: 0.8rem;
+      }
+
+      h3 {
+        font-size: 1.2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 0.5rem;
+      }
+
+      form {
+        padding: 1rem;
+      }
+
+      h2 {
+        font-size: 1.3rem;
+      }
+
+      h3 {
+        font-size: 1.1rem;
+      }
+
+      input, select, button {
+        font-size: 0.95rem;
+        padding: 0.7rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Booking Your Service</h2>
+  <form id="bookingForm">
+    <h3>Sender Details</h3>
+    <label for="senderName">Full Name</label>
+    <input type="text" id="senderName" name="senderName" required />
+
+    <label for="senderPhone">Phone Number</label>
+    <input type="text" id="senderPhone" name="senderPhone" required />
+
+    <label for="pickupLocation">Pickup Location</label>
+    <input type="text" id="pickupLocation" name="pickupLocation" required />
+
+    <label for="serviceType">Select Service</label>
+    <select id="serviceType" name="serviceType">
+      <option value="">-- Optional --</option>
+      <option value="Errands">Errands</option>
+      <option value="Dispatch">Dispatch</option>
+      <option value="Home Delivery">Home Delivery</option>
+    </select>
+
+    <div id="errandsInput" class="hidden">
+      <label for="errandItem">What would you like to send?</label>
+      <input type="text" id="errandItem" name="errandItem" />
+    </div>
+
+    <h3>Receiver Details</h3>
+    <label for="receiverName">Full Name</label>
+    <input type="text" id="receiverName" name="receiverName" required />
+
+    <label for="receiverPhone">Phone Number</label>
+    <input type="text" id="receiverPhone" name="receiverPhone" required />
+
+    <label for="deliveryLocation">Delivery Location</label>
+    <input type="text" id="deliveryLocation" name="deliveryLocation" required />
+
+    <button type="submit">Continue to Payment</button>
+  </form>
+
+  <script type="module">
+    import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
+    
+    const firebaseConfig = {
+      apiKey: "AIzaSyC_0SnIDyWzTqXjf6SBh_pd5M-dgoHMF8w",
+      authDomain: "send-jay-website.firebaseapp.com",
+      projectId: "send-jay-website",
+      storageBucket: "send-jay-website.firebasestorage.app",
+      messagingSenderId: "40934949005",
+      appId: "1:40934949005:web:71a3653b021eec6d12a2c4",
+      measurementId: "G-LXPK18WSZX"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore();
+
+    const serviceTypeSelect = document.getElementById("serviceType");
+    const errandsInput = document.getElementById("errandsInput");
+
+    serviceTypeSelect.addEventListener("change", function () {
+      errandsInput.style.display = serviceTypeSelect.value === "Errands" ? "block" : "none";
+    });
+
+    document.getElementById("bookingForm").addEventListener("submit", async function (event) {
+      event.preventDefault();
+
+      const senderName = document.getElementById("senderName").value;
+      const senderPhone = document.getElementById("senderPhone").value;
+      const pickupLocation = document.getElementById("pickupLocation").value;
+      const serviceType = document.getElementById("serviceType").value;
+      const receiverName = document.getElementById("receiverName").value;
+      const receiverPhone = document.getElementById("receiverPhone").value;
+      const deliveryLocation = document.getElementById("deliveryLocation").value;
+      const errandItem = serviceType === "Errands" ? document.getElementById("errandItem").value : null;
+
+      const bookingData = {
+        senderName,
+        senderPhone,
+        pickupLocation,
+        serviceType,
+        receiverName,
+        receiverPhone,
+        deliveryLocation,
+        errandItem,
+        timestamp: serverTimestamp()
+      };
+
+      try {
+        await addDoc(collection(db, "bookings"), bookingData);
+        console.log("Booking data successfully added!");
+        window.location.href = "payment.html";
+      } catch (error) {
+        console.error("Error adding document: ", error);
+      }
+    });
+  </script>
+
+</body>
+</html>
+
